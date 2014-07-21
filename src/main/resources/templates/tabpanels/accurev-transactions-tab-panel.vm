@@ -1,0 +1,51 @@
+#disable_html_escaping()
+<table cellpadding="2" cellspacing="0" border="0" width="100%">
+<tr>
+    <td bgcolor="#f0f0f0" width="10%"><b>$i18n.getText("accurev.issue-tab.stream")</b></td>
+    <td bgcolor="#f0f0f0" width="10%"><b>$i18n.getText("accurev.issue-tab.transaction")</b></td>
+    <td bgcolor="#f0f0f0" width="10%"><b>$i18n.getText("accurev.issue-tab.time")</b></td>
+    <td bgcolor="#f0f0f0" width="10%"><b>$i18n.getText("accurev.issue-tab.user")</b></td>
+    <td bgcolor="#f0f0f0" width="4%"><b>$i18n.getText("accurev.issue-tab.type")</b></td>
+    <td bgcolor="#f0f0f0"><b>$i18n.getText('accurev.issue-tab.comment')</b></td>
+</tr>
+<tr>
+    <td bgcolor="#ffffff" width="10%" valign="top" rowspan="3">$accurev.transaction.getStream()</td>
+    <td bgcolor="#ffffff" width="10%" valign="top" rowspan="3">$accurev.getTransLink($accurev.transaction)</td>
+    <td bgcolor="#ffffff" width="10%" valign="top" rowspan="3">$accurev.transaction.getTime()</td>
+    <td bgcolor="#ffffff" width="10%" valign="top" rowspan="3">$accurev.transaction.getUser()</td>
+    <td bgcolor="#ffffff" width="4%" valign="top" rowspan="3"><font size="-2">$accurev.transaction.getType()</font></td>
+    <td bgcolor="#ffffff">$accurev.transaction.getComment().trim()</td>
+</tr>
+<tr>
+    <td bgcolor="#f0f0f0"><b>$i18n.getText("accurev.issue-tab.files-changed")</b></td>
+</tr>
+
+<tr>
+    <td bgcolor="#ffffff">
+        #foreach ($changePath in $accurev.transaction.getVersions())
+            <font size="-1">$accurev.getPathDiffLink($accurev.transaction, $changePath)</font>
+            <font color="#999933" size="-2"><b title="VirtualVer">$changePath.getVirtualVer()</b></font>
+            <br>
+        #end
+    </td>
+</tr>
+</table>
+#set ( $innerClassSeparator = "$" )
+#set ( $lastaccurevTransActionName = "LastaccurevRevisionActionInPage" )
+#if ($accurev.class.name == "com.github.srmarriott.jira.plugins.accurev.issuetabpanels.AccuRevTransactionsTabPanel${innerClassSeparator}${lastaccurevTransActionName}")
+    <div class="plugin_accurev_showmore_issuetab">
+        <fieldset style="display: none">
+            <input type="hidden" name="issueKey" value="">
+            <input type="hidden" name="page" value="com.atlassian.jira.plugin.ext.accurev:accurev-commits-tabpanel">
+            <input type="hidden" name="decorator" value="none">
+            #if ( $req.getParameter("pageIndex") )
+                #set ( $newPageIndex = $textutils.parseInt( $req.getParameter("pageIndex") ) + 1 )
+                <input type="hidden" name="pageIndex" value="$newPageIndex">
+            #else
+                <input type="hidden" name="pageIndex" value="1">
+            #end
+            <input type="hidden" name="pageSize" value="$!req.getParameter('pageSize')">
+        </fieldset>
+        <input class="plugin_accurev_showmore_issuetab_button" type="button" value="More">
+    </div>
+#end

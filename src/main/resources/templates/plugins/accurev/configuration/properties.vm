@@ -1,0 +1,41 @@
+<tr>
+  <td colspan=2 bgcolor=f0f0f0><b>$action.getText("accurev.depot.details")</b></td>
+</tr>
+
+#controlHeader($action 'depotName' $action.getText("accurev.depot.name") true $displayParameters.noHeader)
+<input type="text" id="depotName" name="depotName" #if ($depotName) value="$textutils.htmlEncode( $depotName )" #end />
+#controlFooter($action $action.getText("accurev.depot.name.description") $displayParameter.noHeader)
+
+#controlHeader($action 'transactionIndexing' $action.getText("accurev.depot.transaction.indexing") true $displayParameters.noHeader)
+<input id="transactionIndexingTrue" type="radio" value="true" name="transactionIndexing" #if ($transactionIndexing) checked="checked" #end><label for="transactionIndexingTrue">$action.getText("accurev.depot.transaction.indexing.enabled")</label>
+&nbsp;
+<input id="transactionIndexingFalse" type="radio" value="false" name="transactionIndexing" #if (!$transactionIndexing) checked="checked" #end><label for="transactionIndexingFalse">$action.getText("accurev.depot.transaction.indexing.disabled")</label>
+#controlFooter($action '' $displayParameter.noHeader)
+
+#controlHeader($action 'transactionCacheSize' $action.getText("accurev.depot.transaction.cache.size") true $displayParameters.noHeader)
+<input type="text" id="transactionCacheSize" name="transactionCacheSize" #if ($transactionCacheSize) value="$transactionCacheSize" #end />
+#controlFooter($action $action.getText("accurev.depot.transaction.cache.size.description") $displayParameters.noHeader)
+
+<tr>
+    <td colspan=2 bgcolor=f0f0f0><b>$action.getText("accurev.depot.serverinfo")</b></td>
+</tr>
+
+#controlHeader($action 'server' $action.getText("accurev.depot.server") true $displayParameters.noHeader)
+<input type="text" id="server" name="server" #if ($server) value="$textutils.htmlEncode( $server )" #end />
+#controlFooter($action '' $displayParameters.noHeader)
+
+#controlHeader($action 'port' $action.getText("accurev.depot.port") true $displayParameters.noHeader)
+<input type="text" id="port" name="port" #if ($port) value="$port" #end />
+#controlFooter($action '' $displayParameters.noHeader)
+
+#controlHeader($action 'username' $action.getText("accurev.depot.username") true $displayParameters.noHeader)
+<input type="text" id="username" name="username" #if ($username) value="$textutils.htmlEncode( $username )" #end />
+#controlFooter($action '' $displayParameters.noHeader)
+
+#controlHeader($action 'password' $action.getText("accurev.depot.password") true $displayParameters.noHeader)
+<input type="password" id="password" name="password" />
+#controlFooter($action '' $displayParameters.noHeader)
+
+#controlHeader($action 'webLink' $action.getText("accurev.depot.weblink") true $displayParameters.noHeader)
+<input type="text" id="webLink" name="webLink" #if ($webLink) value="$textutils.htmlEncode( $webLink )" #end />
+#controlFooter($action '' $displayParameters.noHeader)

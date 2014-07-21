@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<atlassian-plugin key="${project.groupId}.${project.artifactId}" name="${project.name}" plugins-version="2">
+  <plugin-info>
+    <description>${project.description}</description>
+    <version>${project.version}</version>
+    <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+    <param name="plugin-icon">images/pluginIcon.png</param>
+    <param name="plugin-logo">images/pluginLogo.png</param>
+  </plugin-info>
+  <resource type="i18n" name="AccuRevActionSupport" location="com.github.srmarriott.jira.plugins.accurev.action.AccuRevActionSupport" />
+  <!-- add our i18n resource -->
+  <resource type="i18n" name="i18n" location="accurev-transaction-jira-plugin"/>
+  <resource type="i18n" name="issuetabpanels-accurev_transaction_jira_plugin" location="templates.tabpanels.accurev_transaction_jira_plugin"/>
+  <!-- add our web resources -->
+  <web-resource key="accurev-jira-plugin-resources" name="AccuRev Transaction JIRA plugin Web Resources">
+    <dependency>com.atlassian.auiplugin:ajs</dependency>
+    <resource type="download" name="accurev-jira-plugin.css" location="/css/accurev-jira-plugin.css"/>
+    <resource type="download" name="accurev-jira-plugin.js" location="/js/accurev-jira-plugin.js"/>
+    <resource type="download" name="images/" location="/images"/>
+    <context>accurev-transaction-jira-plugin</context>
+  </web-resource>
+  <!-- publish our component -->
+  <component key="updateIndexMonitor" name="Update Index Monitor Service Component" class="com.github.srmarriott.jira.plugins.accurev.transactions.scheduling.UpdateIndexMonitorImpl" public="true">
+        <interface>com.github.srmarriott.jira.plugins.accurev.transactions.scheduling.UpdateIndexMonitor</interface>
+        <interface>com.atlassian.sal.api.lifecycle.LifecycleAware</interface>
+  </component>
+  <component key="multipleAccuRevDepotManager" name="Multiple AccuRev Depot Manager Component" class="com.github.srmarriott.jira.plugins.accurev.MultipleAccuRevDepotManagerImpl" public="true">
+  	<interface>com.github.srmarriott.jira.plugins.accurev.MultipleAccuRevDepotManager</interface>
+  </component>
+  <component-import key="pluginScheduler" name="Indexing Scheduler">
+    <description>SAL Scheduler</description>
+  	<interface>com.atlassian.sal.api.scheduling.PluginScheduler</interface>
+  </component-import>
+
+  <webwork1 key="AccuRevDepotsManagement" name="AccuRev depots management" class="java.lang.Object">
+  	<actions>
+   	  <action name="com.github.srmarriott.jira.plugins.accurev.action.ViewAccuRevDepotsAction" alias="ViewAccuRevDepots">
+       	<view name="success">/templates/plugins/accurev/configuration/list.vm</view>
+      </action>
+      <action name="com.github.srmarriott.jira.plugins.accurev.action.AddAccuRevDepotAction" alias="AddAccuRevDepot">
+        <view name="input">/templates/plugins/accurev/configuration/add.vm</view>
+        <view name="error">/templates/plugins/accurev/configuration/add.vm</view>
+        <view name="permissionviolation">/templates/plugins/accurev/configuration/no-privilege.vm</view>
+      </action>
+      <action name="com.github.srmarriott.jira.plugins.accurev.action.UpdateAccuRevDepotAction" alias="UpdateAccuRevDepot">
+        <view name="input">/templates/plugins/accurev/configuration/edit.vm</view>
+        <view name="permissionviolation">/templates/plugins/accurev/configuration/no-privilege.vm</view>
+        <view name="error">/templates/plugins/accurev/configuration/edit.vm</view>
+      </action>
+      <action name="com.github.srmarriott.jira.plugins.accurev.action.DeleteAccuRevDepotAction" alias="DeleteAccuRevDepot">
+		<view name="input">/templates/plugins/accurev/configuration/delete.vm</view>
+        <view name="permissionviolation">/templates/plugins/accurev/configuration/no-privilege.vm</view>
+		<view name="error">/templates/plugins/accurev/configuration/delete.vm</view>
+      </action>
+      <action name="com.github.srmarriott.jira.plugins.accurev.action.ActivateAccuRevDepotAction" alias="ActivateAccuRevDepot">
+        <view name="permissionviolation">/templates/plugins/accurev/configuration/no-privilege.vm</view>
+        <view name="success">/templates/plugins/accurev/configuration/activate.vm</view>
+      </action>
+    </actions>
+  </webwork1>
+  <web-item key="accurev-depots-link" name="AccuRev depots link on administrators page" section="admin_plugins_menu/source_control" weight="95">
+    <label key="accurev.depots" />
+      <condition class="com.atlassian.jira.plugin.webfragment.conditions.JiraGlobalPermissionCondition">
+        <param name="permission">admin</param>
+      </condition>
+      <link linkId="accurev-depots">/secure/ViewAccuRevDepots.jspa</link>
+  </web-item>
+  <component-import key="applicationProperties" name="Application Properties" interface="com.atlassian.sal.api.ApplicationProperties"/>
+  <issue-tabpanel key="accurev-transactions-tab-panel" i18n-name-key="accurev-transactions-tab-panel.name" class="issuetabpanels.AccuRevTransactionsTabPanel">
+    <description key="accurev-transactions-tab-panel.description">The AccuRev Transactions Tab Panel Plugin</description>
+    <label key="accurev-transactions-tab-panel.label"></label>
+    <supports-ajax-load>true</supports-ajax-load>
+    <order>10</order>
+    <resource type="velocity" name="view" location="templates/tabpanels/accurev-transactions-tab-panel.vm"/>
+  </issue-tabpanel>
+</atlassian-plugin>

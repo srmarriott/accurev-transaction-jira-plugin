@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>$action.getText("accurev.delete.depot")</title>
+    <meta name="decorator" content="admin" />
+  </head>
+  <body>
+			<form onsubmit="if (this.submitted) return false; this.submitted = true; return true" name="jiraform" method="post" action="DeleteAccuRevDepot.jspa"/>
+				<table width=100% cellpadding=10 cellspacing=0 border=0>
+					<tr>
+						<td>
+							 <table class="jiraform maxWidth">
+								 <tbody>
+									 <tr>
+										 <td class="jiraformheader">
+											 <h3 class="formtitle">$action.getText("accurev.delete.depot")</h3>
+										 </td>
+									 </tr>
+									 <tr>
+											<td class="jiraformheader">
+												<input type="hidden" name="depotId" value="$depotId" />
+												$action.getText("accurev.confirm.delete.depot", $accuRevManager.depotName)
+											</td>
+								 <tr>
+										 <td class="fullyCentered jiraformfooter" >
+								 <input type="submit" name="delete" value="$action.getText("common.words.delete")" accesskey="S" title="Press Alt+Shift+S to submit form" class="spaced" />
+											 <input id="cancelButton"  type="button" accesskey="`" title="Cancel (Alt+Shift + `)" name="ViewAccuRevDepots.jspa" value="Cancel" onclick="location.href='ViewAccuRevDepots.jspa'" />
+										 </td>
+									 </tr>
+								 </tbody>
+							 </table>
+						 </td>
+					 </tr>
+				 </table>
+			</form>
+  </body>
+</html>
