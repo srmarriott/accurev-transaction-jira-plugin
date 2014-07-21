@@ -15,4 +15,6 @@ Display AccuRev transactions inside JIRA issues.
 
 Install accurev-transaction-jira-plugin-1.0-SNAPSHOT.jar via Manage Add-Ons, or manually by copying onto file system using Plugins2 method.
 
+Ensure the correct "ACCUREV_HOME" is passed into the JIRA instance at start-up. ACCUREV_HOME is where the accurec login credentials are stored.
+
 Once the plugin is installed, navigate to the "AccuRev Depots" tab which should be alongside the other SCM setup tabs inside JIRA Administration.
