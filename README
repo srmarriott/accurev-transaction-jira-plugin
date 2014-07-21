@@ -1,5 +1,8 @@
 AccuRev Transaction JIRA Plugin
 
+Originally based on jira-subversion-plugin from Atlassian at
+https://bitbucket.org/atlassian/jira-subversion-plugin/src   (see LICENSE)
+
 1. Intro
 
 Display AccuRev transactions inside JIRA issues.
