@@ -23,3 +23,8 @@ JIRA web->Administration->Add-ons->(SOURCE CONTROL) AccuRev Depots. From here yo
 3. Limitations
 
 Have not tested using multiple accurev servers for the depot configuration.
+
+4. Reseting the plugin cache
+
+The plugin uses a cache to store transaction information. The cache is located under $JIRA_HOME/caches/indexes/plugins/accurev-transactions .
+To repopulate the cache from scratch simply delete the accurev-transactions directory (and be careful about not deleting any other important directories!).
