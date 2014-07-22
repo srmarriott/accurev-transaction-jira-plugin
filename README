@@ -18,3 +18,8 @@ Install accurev-transaction-jira-plugin-1.0-SNAPSHOT.jar via Manage Add-Ons, or 
 Ensure the correct "ACCUREV_HOME" is passed into the JIRA instance at start-up. ACCUREV_HOME is where the accurec login credentials are stored.
 
 Once the plugin is installed, navigate to the "AccuRev Depots" tab which should be alongside the other SCM setup tabs inside JIRA Administration.
+JIRA web->Administration->Add-ons->(SOURCE CONTROL) AccuRev Depots. From here you can add or remove depots.
+
+3. Limitations
+
+Have not tested using multiple accurev servers for the depot configuration.
