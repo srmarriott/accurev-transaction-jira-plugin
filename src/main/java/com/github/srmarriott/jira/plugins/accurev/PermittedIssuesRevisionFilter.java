@@ -1,6 +1,6 @@
 package com.github.srmarriott.jira.plugins.accurev;
 
-import com.atlassian.crowd.embedded.api.User;
+import com.atlassian.jira.user.ApplicationUser;
 import com.atlassian.jira.issue.IssueManager;
 import com.atlassian.jira.security.PermissionManager;
 import com.github.srmarriott.jira.plugins.accurev.transactions.TransactionIndexer;
@@ -23,7 +23,7 @@ public class PermittedIssuesRevisionFilter extends AbstractRevisionFilter
 	private static final long serialVersionUID = 1L;
 	private final Set<String> permittedIssueKeys;
 
-    public PermittedIssuesRevisionFilter(IssueManager issueManager, PermissionManager permissionManager, User user, Set<String> permittedIssueKeys)
+    public PermittedIssuesRevisionFilter(IssueManager issueManager, PermissionManager permissionManager, ApplicationUser user, Set<String> permittedIssueKeys)
     {
         super(issueManager, permissionManager, user);
         this.permittedIssueKeys = permittedIssueKeys;

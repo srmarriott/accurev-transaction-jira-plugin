@@ -1,6 +1,6 @@
 package com.github.srmarriott.jira.plugins.accurev.transactions;
 
-import com.atlassian.crowd.embedded.api.User;
+import com.atlassian.jira.user.ApplicationUser;
 import com.atlassian.core.exception.InfrastructureException;
 import com.atlassian.jira.config.util.IndexPathManager;
 import com.atlassian.jira.issue.Issue;
@@ -547,7 +547,7 @@ public class TransactionIndexer {
         }
     }
     
-    public Map<Long, List<AccuRevTrans>> getTransactionsByDepot(String projectKey, User user, int startIndex, int pageSize) throws IndexException, IOException
+    public Map<Long, List<AccuRevTrans>> getTransactionsByDepot(String projectKey, ApplicationUser user, int startIndex, int pageSize) throws IndexException, IOException
     {
         if (!indexDirectoryExists())
         {
@@ -616,7 +616,7 @@ public class TransactionIndexer {
         }
     }
 
-    public Map<Long, List<AccuRevTrans>> getTransactionsByVersion(Version version, User user, int startIndex, int pageSize) throws IndexException, IOException
+    public Map<Long, List<AccuRevTrans>> getTransactionsByVersion(Version version, ApplicationUser user, int startIndex, int pageSize) throws IndexException, IOException
     {
         if (!indexDirectoryExists())
         {
@@ -625,10 +625,10 @@ public class TransactionIndexer {
         }
 
         // Find all isuses affected by and fixed by any of the versions:
-        Collection<GenericValue> issues = new HashSet<GenericValue>();
+        Collection<Issue> issues = new HashSet<Issue>();
 
-        issues.addAll(versionManager.getFixIssues(version));
-        issues.addAll(versionManager.getAffectsIssues(version));
+        issues.addAll(versionManager.getIssuesWithFixVersion(version));
+        issues.addAll(versionManager.getIssuesWithAffectsVersion(version));
 
         // Construct a query with all the issue keys. Make sure to increase the maximum number of clauses if needed.
         int maxClauses = BooleanQuery.getMaxClauseCount();
@@ -638,7 +638,7 @@ public class TransactionIndexer {
         BooleanQuery query = new BooleanQuery();
         Set<String> permittedIssueKeys = new HashSet<String>();
 
-        for (GenericValue issue : issues)
+        for (Issue issue : issues)
         {
             String key = issue.getString(FIELD_ISSUEKEY);
             Issue theIssue = issueManager.getIssueObject(key);

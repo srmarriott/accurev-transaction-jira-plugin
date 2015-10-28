@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.srmarriott.jira.plugins.accurev</groupId>
     <artifactId>accurev-transaction-jira-plugin</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1-SNAPSHOT</version>
     <organization>
         <name>Sean Marriott</name>
         <url>http://www.github.com/srmarriott</url>
@@ -95,6 +95,12 @@
             <version>1.8.5</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-core</artifactId>
+            <version>3.2.0</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -121,17 +127,21 @@
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>1.7</source>
+                    <target>1.7</target>
                 </configuration>
             </plugin>
         </plugins>
     </build>
     <properties>
-        <jira.version>6.1.7</jira.version>
-        <amps.version>4.2.18</amps.version>
-        <plugin.testrunner.version>1.1.2</plugin.testrunner.version>
-        <!-- TestKit version 5.x for JIRA 5.x, 6.x for JIRA 6.x -->
-        <testkit.version>5.2.26</testkit.version>
+        <jira.version>7.0.0-4</jira.version>
+        <amps.version>6.1.2</amps.version>
+        <plugin.testrunner.version>1.2.3</plugin.testrunner.version>
+        <atlassian.spring.scanner.version>1.2.6</atlassian.spring.scanner.version>
+        <atlassian.plugin.key>${project.groupId}.${project.artifactId}</atlassian.plugin.key>
+        <atlassian.product.data.version>${jira.version}</atlassian.product.data.version>
+        <jira.software.application.version>${jira.version}</jira.software.application.version>
+		<!-- TestKit version 6.x for JIRA 6.x -->
+		<testkit.version>6.3.11</testkit.version>
     </properties>
 </project>

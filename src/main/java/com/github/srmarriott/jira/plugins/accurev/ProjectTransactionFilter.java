@@ -1,6 +1,6 @@
 package com.github.srmarriott.jira.plugins.accurev;
 
-import com.atlassian.crowd.embedded.api.User;
+import com.atlassian.jira.user.ApplicationUser;
 import com.atlassian.jira.issue.Issue;
 import com.atlassian.jira.issue.IssueManager;
 import com.atlassian.jira.security.PermissionManager;
@@ -22,7 +22,7 @@ public class ProjectTransactionFilter extends AbstractRevisionFilter
 {
     private final String projectKey;
 
-    public ProjectTransactionFilter(IssueManager issueManager, PermissionManager permissionManager, User user, String projectKey)
+    public ProjectTransactionFilter(IssueManager issueManager, PermissionManager permissionManager, ApplicationUser user, String projectKey)
     {
         super(issueManager, permissionManager, user);
         this.projectKey = projectKey;

@@ -43,6 +43,9 @@ public class UpdateIndexMonitorImpl implements UpdateIndexMonitor, LifecycleAwar
         logger.info(String.format("UpdateIndexMonitorImpl scheduled to run every %dms", DEFAULT_INDEX_INTERVAL));
 	}
 
+        public void onStop() {
+        }
+
     @Override
     public void destroy() {
 //    	// unscheduleJob stalls JIRA shutdown sometimes. No idea so far.

@@ -1,7 +1,7 @@
 package issuetabpanels;
 
 
-import com.atlassian.crowd.embedded.api.User;
+import com.atlassian.jira.user.ApplicationUser;
 import com.atlassian.jira.issue.Issue;
 import com.atlassian.jira.issue.index.IndexException;
 import com.atlassian.jira.issue.tabpanels.GenericMessageAction;
@@ -49,12 +49,12 @@ public class AccuRevTransactionsTabPanel extends AbstractIssueTabPanel implement
     }
 
     @Override
-    public boolean showPanel(Issue issue, User remoteUser)
+    public boolean showPanel(Issue issue, ApplicationUser remoteUser)
     {
         return true;
     }
     
-    public List getActions(Issue issue, User remoteUser)
+    public List getActions(Issue issue, ApplicationUser remoteUser)
     {
 
         try

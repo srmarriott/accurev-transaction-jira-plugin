@@ -25,7 +25,7 @@ public class AccuRevActionSupport extends JiraWebActionSupport {
 	}
 
 	public boolean hasPermissions() {
-		return isHasPermission(Permissions.ADMINISTER);
+		return hasPermission(Permissions.ADMINISTER);
 	}
 
 	public String doDefault() {

@@ -1,6 +1,6 @@
 package com.github.srmarriott.jira.plugins.accurev;
 
-import com.atlassian.crowd.embedded.api.User;
+import com.atlassian.jira.user.ApplicationUser;
 import com.atlassian.jira.issue.IssueManager;
 import com.atlassian.jira.security.PermissionManager;
 import com.github.srmarriott.jira.plugins.accurev.transactions.TransactionIndexer;
@@ -21,11 +21,11 @@ public abstract class AbstractRevisionFilter extends Filter
 
     final PermissionManager permissionManager;
 
-    final User user;
+    final ApplicationUser user;
 
     final FieldSelector issueKeysFieldSelector;
 
-    public AbstractRevisionFilter(IssueManager issueManager, PermissionManager permissionManager, User user)
+    public AbstractRevisionFilter(IssueManager issueManager, PermissionManager permissionManager, ApplicationUser user)
     {
         this.issueManager = issueManager;
         this.permissionManager = permissionManager;
