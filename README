@@ -13,7 +13,7 @@ Display AccuRev transactions inside JIRA issues.
 
 2. Setup
 
-Install accurev-transaction-jira-plugin-1.0-SNAPSHOT.jar via Manage Add-Ons, or manually by copying onto file system using Plugins2 method.
+Install accurev-transaction-jira-plugin-${VERSION}-SNAPSHOT.jar via Manage Add-Ons, or manually by copying onto file system using Plugins2 method.
 
 Ensure the correct "ACCUREV_HOME" is passed into the JIRA instance at start-up. ACCUREV_HOME is where the accurec login credentials are stored.
 
@@ -27,4 +27,4 @@ Have not tested using multiple accurev servers for the depot configuration.
 4. Reseting the plugin cache
 
 The plugin uses a cache to store transaction information. The cache is located under $JIRA_HOME/caches/indexes/plugins/accurev-transactions .
-To repopulate the cache from scratch simply delete the accurev-transactions directory (and be careful about not deleting any other important directories!).
+To repopulate the cache from scratch simply delete the accurev-transactions directory.
